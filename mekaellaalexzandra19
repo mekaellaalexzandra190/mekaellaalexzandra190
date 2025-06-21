@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>To-Do List for Today</title>
+  <link rel="stylesheet" href="my to do list for today3.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>📝 To-Do List for Today</h1>
+    <input type="text" id="taskInput" placeholder="Enter your task..." />
+    <button onclick="addTask()">Add Task</button>
+    <ul id="taskList"></ul>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
+
+
+function addTask() {
+  const input = document.getElementById('taskInput');
+  const taskText = input.value.trim();
+
+  if (taskText !== '') {
+    const li = document.createElement('li');
+    li.textContent = taskText;
+
+    const deleteBtn = document.createElement('span');
+    deleteBtn.textContent = '❌';
+    deleteBtn.onclick = () => li.remove();
+
+    li.appendChild(deleteBtn);
+    document.getElementById('taskList').appendChild(li);
+    input.value = '';
+  } else {
+    alert('Please enter a task.');
+  }
+}
+
+
+/* Make body use full screen and center everything */
+body {
+  font-family: Arial, sans-serif;
+  background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRhA23y895DQe3Q7cka28M9O39elfDvJ474w&s') no-repeat center center fixed;
+  background-size: cover;
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Container for the To-Do app */
+.container {
+  background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
+  padding: 30px;
+  width: 90%;
+  max-width: 400px;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  text-align: center;
+}
+
+/* Input styling */
+input {
+  width: 65%;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+/* Button styling */
+button {
+  padding: 10px 15px;
+  margin-top: 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+/* Task list styles */
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+/* Each task item */
+li {
+  background-color: #eee;
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 5px;
+  position: relative;
+  text-align: left;
+}
+
+/* Delete icon */
+li span {
+  position: absolute;
+  right: 10px;
+  color: red;
+  cursor: pointer;
+}
